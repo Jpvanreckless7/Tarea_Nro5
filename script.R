@@ -51,6 +51,9 @@ tablaPalabras<-table(unlistNoticias)
 # Pasando la información a un data frame
 dfPalabrasNoticia <- as.data.frame(tablaPalabras)
 
+# Viendo a priori la info en la variable textoNoticia
+print(dfPalabrasNoticia)
+
 # Almacenando la información en CSV
 write.csv(dfPalabrasNoticia, file="PalabrasNoticia.csv")
 
@@ -72,3 +75,5 @@ tabla1 <- html_table(contenedorDeTablas)
 
 # Viendo el contenido de la tabla1
 print(tabla1[1])
+
+
