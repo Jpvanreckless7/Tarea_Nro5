@@ -147,28 +147,6 @@ TablaPalabras<-table(ContarPalabras)
 #Pasando la informacion a un data frame
 DataFramePalabras<-as.data.frame(TablaPalabras)
 
-#Juntamos los parrafos a TextoCompleto
-Textolisto<-""
-for(i in 1:length(DataFrameTabla))
-  Textolisto<-paste(Textolisto," ",DataFrameTabla[i])
-#Volvemos a realizar los pasos para contar (data frame)
-
-Textolisto<-gsub("\n","",Textolisto)
-Textolisto<-gsub("\"","",Textolisto)
-Textolisto<-gsub("[.]","",Textolisto)
-Textolisto<-gsub(",","",Textolisto)
-Textolisto<-gsub(":","",Textolisto)
-
-print(Textolisto)
-
-EspacioPalabras<-strsplit(Textolisto," ")[[1]]
-MinusculaPalabras<-tolower(EspacioPalabras)
-ContarPalabras<-unlist(MinusculaPalabras)
-TablaPalabras<-table(ContarPalabras)
-DataFramePalabras<-as.data.frame(TablaPalabras)
-write.csv(DataFramePalabras, file = "PalabrasNoticia.csv")
-
-
 #Grafico con los datos
 
 #Limpiar tabla
@@ -183,13 +161,13 @@ TablaWeb$`Precios` <- as.numeric(gsub(",",".",TablaWeb$`Precios`))
 #usando ggplot2
 library('ggplot2')
 
-# respecto al precio
+# Respecto al precio
 TablaWeb %>%
   ggplot() +
-  aes(x = Productos, y = Precios) +
+  aes(x = Artefacto, y = Precios) +
   geom_bar(stat="identity")
 
-# Gráfico boxplot diferenciado por producto
+# Gráfico boxplot 
 TablaWeb %>%
   ggplot() +
   geom_boxplot(aes(x = Artefacto, y = `Precios`)) +
