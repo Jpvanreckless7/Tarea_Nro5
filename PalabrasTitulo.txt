@@ -1,0 +1,16 @@
+"unlistTitulo" "Freq"
+"1" "antes" 1
+"2" "astrónomos" 1
+"3" "bailar" 1
+"4" "confesarse" 1
+"5" "del" 1
+"6" "est&aacuten" 1
+"7" "fin" 1
+"8" "impactando" 1
+"9" "la" 1
+"10" "meteoritos" 1
+"11" "mucho" 1
+"12" "recomiendan" 1
+"13" "reggaet&oacuten" 1
+"14" "tierra" 1
+"15" "y" 1

@@ -16,6 +16,51 @@ archivo <- 'web.html'
 webpage <- read_html(archivo)
 
 ##########################################################
+############# Extracción del titulo noticia ##############
+##########################################################
+
+#Extrayendo contenido titulo noticia
+TiuloNoticia <- html_nodes(webpage,'.Titulo')
+print(TiuloNoticia)
+
+# Pasando la info a texto
+textoTitulo<- html_text(TiuloNoticia)
+
+# Viendo a priori la info en la variable TituloNoticia
+print(textoTitulo)
+
+# Eliminando los \n,comillas("),puntos(.) y comas(,) del texto
+textoTitulo <- gsub("\n","",textoTitulo)
+textoTitulo <- gsub("\"","",textoTitulo)
+textoTitulo <- gsub("[.]","",textoTitulo)
+textoTitulo <- gsub(",","",textoTitulo)
+
+# Viendo ordenada la info en la variable textoTitulo
+print(textoTitulo)
+
+# Separando las palabras por espacio
+splitEspacioTitulo <- strsplit(textoTitulo," ")[[1]]
+
+# Pasando todas las palabras a minúsculas
+splitEspacioTitulo <- tolower(splitEspacioTitulo)
+
+# Contando palabras
+unlistTitulo<-unlist(splitEspacioTitulo)
+tablaPalabrasTitulo<-table(unlistTitulo)
+
+# Pasando la información a un data frame
+PalabrasTitulo <- as.data.frame(tablaPalabrasTitulo)
+
+# Viendo a priori la info en la variable textoTitulo
+print(PalabrasTitulo)
+
+# Almacenando la información en CSV
+write.csv(PalabrasTitulo, file="PalabrasTitulo.csv")
+
+# o en un txt
+write.table(PalabrasTitulo, file="PalabrasTitulo.txt")
+
+##########################################################
 ############# Extracción del texto noticia ###############
 ##########################################################
 
@@ -28,7 +73,6 @@ textoNoticia <- html_text(contenidoWebNoticia)
 
 # Viendo a priori la info en la variable textoNoticia
 print(textoNoticia)
-
 
 # Eliminando los \n,comillas("),puntos(.) y comas(,) del texto
 textoNoticia <- gsub("\n","",textoNoticia)
