@@ -50,16 +50,16 @@ unlistNoticias<-unlist(splitEspacioNoticia)
 tablaPalabras<-table(unlistNoticias)
 
 # Pasando la información a un data frame
-dfPalabrasNoticia <- as.data.frame(tablaPalabras)
+PalabrasNoticia <- as.data.frame(tablaPalabras)
 
 # Viendo a priori la info en la variable textoNoticia
-print(dfPalabrasNoticia)
+print(PalabrasNoticia)
 
 # Almacenando la información en CSV
-write.csv(dfPalabrasNoticia, file="PalabrasNoticia.csv")
+write.csv(PalabrasNoticia, file="PalabrasNoticia.csv")
 
 # o en un txt
-write.table(dfPalabrasNoticia, file="PalabrasNoticia.txt")
+write.table(PalabrasNoticia, file="PalabrasNoticia.txt")
 
 ##########################################################
 ############ Extraccion información tabla ################
@@ -87,10 +87,10 @@ DataFrameTabla<-gsub("[.]","",DataFrameTabla)
 DataFrameTabla<-gsub(",","",DataFrameTabla)
 DataFrameTabla<-gsub(":","",DataFrameTabla)
 
-#tabla despues de impiar elementos
+#tabla despues de limpiar elementos
 print(DataFrameTabla)
 
-#Sepraando las palabras por espacio
+#Seprando las palabras por espacio
 EspacioPalabras<-strsplit(DataFrameTabla," ")[[1]]
 
 #Todas las palabras a minusculas
@@ -104,21 +104,20 @@ TablaPalabras<-table(ContarPalabras)
 DataFramePalabras<-as.data.frame(TablaPalabras)
 
 #Juntamos los parrafos a TextoCompleto
-TextoCompleto<-""
+Textolisto<-""
 for(i in 1:length(DataFrameTabla))
-  TextoCompleto<-paste(TextoCompleto," ",DataFrameTabla[i])
-
+  Textolisto<-paste(Textolisto," ",DataFrameTabla[i])
 #Volvemos a realizar los pasos para contar (data frame)
 
-TextoCompleto<-gsub("\n","",TextoCompleto)
-TextoCompleto<-gsub("\"","",TextoCompleto)
-TextoCompleto<-gsub("[.]","",TextoCompleto)
-TextoCompleto<-gsub(",","",TextoCompleto)
-TextoCompleto<-gsub(":","",TextoCompleto)
+Textolisto<-gsub("\n","",Textolisto)
+Textolisto<-gsub("\"","",Textolisto)
+Textolisto<-gsub("[.]","",Textolisto)
+Textolisto<-gsub(",","",Textolisto)
+Textolisto<-gsub(":","",Textolisto)
 
-print(TextoCompleto)
+print(Textolisto)
 
-EspacioPalabras<-strsplit(TextoCompleto," ")[[1]]
+EspacioPalabras<-strsplit(Textolisto," ")[[1]]
 MinusculaPalabras<-tolower(EspacioPalabras)
 ContarPalabras<-unlist(MinusculaPalabras)
 TablaPalabras<-table(ContarPalabras)
@@ -133,18 +132,22 @@ TablaWeb$`Precios` <- gsub("\\$","",TablaWeb$`Precios`)
 TablaWeb$`Precios` <- gsub("[.]","",TablaWeb$`Precios`)
 TablaWeb$`Precios` <- as.numeric(gsub(",",".",TablaWeb$`Precios`))
 
-#Graficando los precios de acciones
+#Graficando los precios de los productos
+
+#install.packages('ggplot2')
+
+#usando ggplot2
 library('ggplot2')
 
 # respecto al precio
 TablaWeb %>%
   ggplot() +
-  aes(x = Artefacto, y = `Precios`) +
+  aes(x = Productos, y = Precios) +
   geom_bar(stat="identity")
 
 # Gráfico boxplot diferenciado por producto
 TablaWeb %>%
   ggplot() +
-  geom_boxplot(aes(x = Artefacto, y = `Precios``)) +
+  geom_boxplot(aes(x = Artefacto, y = `Precios`)) +
   theme_bw()
 
