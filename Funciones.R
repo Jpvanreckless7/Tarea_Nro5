@@ -156,7 +156,7 @@ TablaWeb$`Precios` <- as.numeric(gsub(",",".",TablaWeb$`Precios`))
 
 #Graficando los precios de los productos
 
-#install.packages('ggplot2')
+install.packages('ggplot2')
 
 #usando ggplot2
 library('ggplot2')
@@ -164,7 +164,7 @@ library('ggplot2')
 # Respecto al precio
 TablaWeb %>%
   ggplot() +
-  aes(x = Artefacto, y = Precios) +
+  aes(x = Artefactos, y = Precios) +
   geom_bar(stat="identity")
 
 # Gráfico boxplot 
