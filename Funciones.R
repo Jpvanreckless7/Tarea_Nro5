@@ -170,6 +170,6 @@ TablaWeb %>%
 # Gráfico boxplot 
 TablaWeb %>%
   ggplot() +
-  geom_boxplot(aes(x = Artefacto, y = `Precios`)) +
+  geom_boxplot(aes(x = Artefactos, y = `Precios`)) +
   theme_bw()
 
